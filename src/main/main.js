@@ -19,11 +19,11 @@ function createWindow () {
   // Electron without webpack.
   // mainWindow.loadFile('./src/renderer/index.html')
 
-  // If using webpack with write-to-disk plugin. Doesn't find the js bundle.
-  // mainWindow.loadFile('./dist/index.html')
+  // If using webpack with WriteAssetsWebpackPlugin plugin.
+  mainWindow.loadFile('./dist/index.html')
 
   // If using webpack.
-  mainWindow.loadURL('http://localhost:8080/index.html')
+  // mainWindow.loadURL('http://localhost:8080/index.html')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()

@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
+const WriteAssetsWebpackPlugin = require('write-assets-webpack-plugin');
 
 // https://www.robinwieruch.de/webpack-setup-tutorial.
 module.exports = {
@@ -34,6 +35,9 @@ module.exports = {
   },
   output: {
     path: __dirname + '/dist',
+    // Use relative filesystem path when using write to disk.
+    publicPath: './',
+    // Use / path when using URL (serving from webpack memory).
     publicPath: '/',
     filename: 'bundle.js'
   },
@@ -61,6 +65,10 @@ module.exports = {
       // Use in combination with HtmlWebpackHarddiskPlugin.
       // alwaysWriteToDisk: true,
     }),
+
+    // https://github.com/webpack/webpack-dev-server/issues/62
+    // https://github.com/euclid1990/write-assets-webpack-plugin
+    new WriteAssetsWebpackPlugin({ force: true, extension: ['js', 'html'] }),
 
     // https://github.com/jantimon/html-webpack-harddisk-plugin
     // Used to always write to disk the html file, useful when webpack-dev-server / HMR are being used.
