@@ -38,7 +38,7 @@ module.exports = {
     // Use relative filesystem path when using write to disk.
     publicPath: './',
     // Use / path when using URL (serving from webpack memory).
-    publicPath: '/',
+    // publicPath: '/',
     filename: 'bundle.js'
   },
   devServer: {
@@ -68,6 +68,7 @@ module.exports = {
 
     // https://github.com/webpack/webpack-dev-server/issues/62
     // https://github.com/euclid1990/write-assets-webpack-plugin
+    // Unlike HtmlWebpackHarddiskPlugin, WriteAssetsWebpackPlugin writes both js and html bundles.
     new WriteAssetsWebpackPlugin({ force: true, extension: ['js', 'html'] }),
 
     // https://github.com/jantimon/html-webpack-harddisk-plugin
@@ -75,7 +76,7 @@ module.exports = {
     // new HtmlWebpackHarddiskPlugin({
     //   filename: 'index.html',
     //   outputPath: path.resolve(__dirname, 'dist'),
-    // })
+    // }),
 
   ],
 };
