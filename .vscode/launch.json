@@ -1,0 +1,95 @@
+{
+  "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Webpack Compound",
+      "configurations": [
+        "Webpack: Dev",
+        "Webpack: Dev Renderer Attach",
+        "Electron: Main"
+      ]
+    }
+  ],
+  "configurations": [
+    {
+      "name": "Webpack: Dev Renderer Attach",
+      "type": "chrome",
+      "request": "attach",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}",
+      "timeout": 30000,
+      "sourceMaps": true,
+      "showAsyncStacks": true,
+      // "smartStep": true,
+      "trace": "verbose",
+      "internalConsoleOptions": "openOnSessionStart",
+    },
+
+    // Configuration from https://github.com/electron-userland/electron-webpack/issues/80.
+    {
+      "name": "Webpack: Dev",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      // "program": "",
+      // "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/webpack-dev-server",
+      // "runtimeExecutable": "node",
+      "runtimeArgs": [
+        // "--remote-debugging-port=9222",
+        // "--userDataDir=true",
+        // "--version"
+        // "--inspect-brk=9222",
+      ],
+      "program": "${workspaceRoot}/node_modules/.bin/webpack-dev-server",
+      "args": [
+        "--mode",
+        "development",
+        "--config",
+        "./webpack.config.js"
+      ],
+      "stopOnEntry": false,
+      "env": {
+        // Disable this flag when using webpack-electron, otherwise babel fills the console buffer.
+        // "DEBUG": "*",
+        "ELECTRON_DISABLE_SECURITY_WARNINGS": "1",
+        "NODE_ENV": "development",
+      },
+      "autoAttachChildProcesses": true,
+      "trace": false,
+      // "console": "internalConsole",
+      // "outputCapture": "std",
+      "sourceMaps": true,
+      "smartStep": true,
+      "showAsyncStacks": true,
+    },
+    {
+      "name": "Electron: Main",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}\\node_modules\\.bin\\electron.cmd"
+      },
+      "env": {
+        "DEBUG": "*",
+        "ELECTRON_DISABLE_SECURITY_WARNINGS": "1",
+        "NODE_ENV": "development",
+      },
+      "args": [
+        "."
+      ],
+      "autoAttachChildProcesses": true,
+      "runtimeArgs": [
+        "--remote-debugging-port=9222",
+        "--userDataDir=true",
+      ],
+      "trace": true,
+      "console": "internalConsole",
+      "outputCapture": "std",
+      "sourceMaps": true,
+      "smartStep": true,
+      "showAsyncStacks": true,
+    },
+  ],
+}
