@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
+const isDev = require('electron-is-dev')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -27,6 +28,11 @@ function createWindow () {
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
+
+  // https://sporkeheheh.com/2018/setting-up-electron-with-react-webpack/
+  // mainWindow.loadURL(
+  //   isDev ? 'http://localhost:8080' : `file://${path.join(__dirname, './dist/index.html')}`
+  // );
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

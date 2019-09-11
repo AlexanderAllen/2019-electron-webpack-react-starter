@@ -39,18 +39,24 @@ module.exports = {
     publicPath: './',
     // Use / path when using URL (serving from webpack memory).
     // publicPath: '/',
+    // Or explicit with webpack.
+    // publicPath: `http://localhost:${port}/bundle/`
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
   },
   // https://webpack.js.org/configuration/devtool/.
   devtool: 'cheap-module-eval-source-map',
 
+  // Is this really required?
+  // target: 'electron-renderer',
 
   plugins: [
 
     // Configure HtmlWebpackPlugin.
+    // Takes input index.html, and outputs an index.html with script tag included.
+    // Docs: https://webpack.js.org/plugins/html-webpack-plugin/
     // Be aware of https://github.com/jantimon/html-webpack-plugin/issues/895.
     new HtmlWebpackPlugin({
       // This is the input file.
