@@ -5,7 +5,10 @@ const WriteAssetsWebpackPlugin = require('write-assets-webpack-plugin');
 
 // https://www.robinwieruch.de/webpack-setup-tutorial.
 module.exports = {
-  entry: './src/renderer/index.js',
+
+  // https://github.com/gaearon/react-hot-loader#getting-started
+  entry: ['react-hot-loader/patch', './src/renderer/index.js'],
+
   module: {
     rules: [
       {
@@ -26,13 +29,28 @@ module.exports = {
           }
         ]
       },
+
+      // Configure CSS.
+      // https://webpack.js.org/guides/hot-module-replacement/#hmr-with-stylesheets
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+
     ]
   },
   // You need BOTH resolve and rules: test to specify the .jsx extension
   // in order to compile React .jsx files.
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx'],
+
+    // https://github.com/gaearon/react-hot-loader
+    // https://github.com/gaearon/react-hot-loader#hot-loaderreact-dom
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
   },
+
   output: {
     path: __dirname + '/dist',
     // Use relative filesystem path when using write to disk.
@@ -43,6 +61,8 @@ module.exports = {
     // publicPath: `http://localhost:${port}/bundle/`
     filename: 'bundle.js'
   },
+  // This tells webpack-dev-server to serve the files from the dist directory on localhost:8080.
+  // https://webpack.js.org/guides/development/#using-webpack-dev-server
   devServer: {
     contentBase: './dist',
   },

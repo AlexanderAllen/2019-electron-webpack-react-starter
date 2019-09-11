@@ -18,5 +18,7 @@
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-transform-runtime",
+    // https://github.com/gaearon/react-hot-loader#getting-started
+    "react-hot-loader/babel",
   ],
 }

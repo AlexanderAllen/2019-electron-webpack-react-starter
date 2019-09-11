@@ -15,15 +15,18 @@
     "babel-loader": "^8.0.6",
     "concurrently": "^4.1.2",
     "cross-env": "^5.2.1",
+    "css-loader": "^3.2.0",
     "html-loader": "^0.5.5",
     "html-webpack-harddisk-plugin": "^1.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^1.0.0",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8",
     "webpack-dev-server": "^3.8.0",
     "write-assets-webpack-plugin": "^1.0.5"
   },
   "dependencies": {
+    "@hot-loader/react-dom": "^16.9.0",
     "electron": "^6.0.8",
     "electron-is-dev": "^1.1.0",
     "electron-utils": "^1.0.9",

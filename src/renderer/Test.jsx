@@ -1,8 +1,11 @@
+import { hot } from 'react-hot-loader/root';
 import React from 'react'
 
 const check = () => {
   return (
-    <h1>SANITY CHECK</h1>
+    <h1>SANITY CHECKS</h1>
   )
 }
-export default check
+
+// Mark your root component as hot-exported.
+export default hot(check)
